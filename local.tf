@@ -1,6 +1,7 @@
 locals {
-  app_name_base   = format("%s_base_%s", var.app_name, random_string.name_suffix.result)
-  app_name_api    = format("%s_api_%s", var.app_name, random_string.name_suffix.result)
+  app_name_base   = format("%s Base", var.app_name)
+  app_name_api    = format("%s App", var.app_name)
+  app_name_cli    = format("%s Cli", var.app_name)
   identifier_uris = format("%s%s", "api://", var.app_name)
   homepage_url    = format("https://app.%s.net", var.app_name)
   logout_url      = format("https://app.%s.net/logout", var.app_name)

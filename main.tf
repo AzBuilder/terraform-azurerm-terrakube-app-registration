@@ -117,6 +117,74 @@ resource "azuread_application" "terrakube_api" {
     redirect_uris = ["https://localhost:3000/"]
   }
 
+  optional_claims {
+    id_token {
+      name                  = "email"
+      essential             = false
+      additional_properties = []
+    }
+
+    id_token {
+      name                  = "family_name"
+      essential             = false
+      additional_properties = []
+    }
+
+    id_token {
+      name                  = "given_name"
+      essential             = false
+      additional_properties = []
+    }
+
+    id_token {
+      name                  = "preferred_username"
+      essential             = false
+      additional_properties = []
+    }
+
+    id_token {
+      name                  = "groups"
+      essential             = false
+      additional_properties = []
+    }
+
+    access_token {
+      name                  = "groups"
+      essential             = false
+      additional_properties = []
+    }
+
+    saml2_token {
+      name                  = "groups"
+      essential             = false
+      additional_properties = []
+    }
+  }
+
+}
+
+
+resource "azuread_application" "terrakube_cli" {
+  display_name     = local.app_name_cli
+  owners           = [data.azuread_client_config.current.object_id]
+  sign_in_audience = "AzureADMyOrg"
+  fallback_public_client_enabled = true
+
+  required_resource_access {
+    resource_app_id =  azuread_application.terrakube_base.application_id 
+
+    resource_access {
+      id   =  azuread_application.terrakube_base.app_role.*.id[0] # Builder.Application.Default
+      type = "Role"
+    }
+
+    resource_access {
+      id   =  azuread_application.terrakube_base.api.*.oauth2_permission_scope[0].*.id[0] # api://azbuilder/Builder.Default
+      type = "Scope"
+    }
+
+  }
+
   public_client {
     redirect_uris = ["https://localhost:10000/login", "https://localhost:10001/login"]
   }
