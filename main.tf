@@ -113,7 +113,7 @@ resource "azuread_application" "terrakube_api" {
     }
 
     resource_access {
-      id   =  "	9a5d68dd-52b0-4cc2-bd40-abcf44ac3a30" #  Microsoft Graph Application.Read.All
+      id   =  "9a5d68dd-52b0-4cc2-bd40-abcf44ac3a30" #  Microsoft Graph Application.Read.All
       type = "Role"
     }
 
