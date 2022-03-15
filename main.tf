@@ -111,6 +111,12 @@ resource "azuread_application" "terrakube_api" {
       id   =  "98830695-27a2-44f7-8c18-0c3ebc9698f6" #  Microsoft Graph GroupMember.Read.All
       type = "Role"
     }
+
+    resource_access {
+      id   =  "	9a5d68dd-52b0-4cc2-bd40-abcf44ac3a30" #  Microsoft Graph Application.Read.All
+      type = "Role"
+    }
+
   }
 
   single_page_application {
