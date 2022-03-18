@@ -3,9 +3,14 @@ output "client_id" {
   description = "Azure Active Directory Application Id"
 }
 
+output "tenant_id" {
+  value       = data.azuread_client_config.current.tenant_id
+  description = "Azure Active Directory Tenat Id"
+}
+
 output "client_uri" {
   value       = local.identifier_uris
-  description = "Azure Active Directory Application URI"
+  description = "Azure Active Directory Application API URI"
 }
 
 output "client_password" {
