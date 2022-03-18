@@ -120,7 +120,7 @@ resource "azuread_application" "terrakube_api" {
   }
 
   single_page_application {
-    redirect_uris = ["https://localhost:3000/"]
+    redirect_uris = local.app_redirect_uri
   }
 
   optional_claims {
